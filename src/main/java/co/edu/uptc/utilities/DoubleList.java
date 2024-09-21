@@ -5,9 +5,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-/**
- * DoubleList
- */
 public class DoubleList implements List<Integer>{
     
     private Node header;
