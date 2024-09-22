@@ -2,6 +2,8 @@ package co.edu.uptc.views;
 
 import java.awt.Color;
 
+import co.edu.uptc.utilities.PropertiesService;
+
 public class GlobalView {
     
     public static Color MAIN_BACKGROUND_COLOR = new Color(0x0D0C27);

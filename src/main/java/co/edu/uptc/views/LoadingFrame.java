@@ -1,24 +1,31 @@
 package co.edu.uptc.views;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 import co.edu.uptc.utilities.PropertiesService;
 
 import java.awt.geom.*;
+import java.io.File;
+import java.io.IOException;
 import java.awt.*;
-import java.io.*;
 
 public class LoadingFrame extends JWindow{
-    PropertiesService ps = new PropertiesService();
+    private PropertiesService p;
     private JPanel panel;
     private JLabel mainMessage;
     private JLabel loadingMessage;
 
     public LoadingFrame(){
+        p = new PropertiesService();
         customizePanel();
         customizeWindow();
-        customizeMainMessage();
-        customizeLoadingMessage();
+        try {
+            customizeMainMessage();
+            customizeLoadingMessage();
+        } catch (FontFormatException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void customizePanel(){
@@ -36,7 +43,6 @@ public class LoadingFrame extends JWindow{
         this.setBackground(GlobalView.MAIN_BACKGROUND_COLOR);
         Shape roundedShape = new RoundRectangle2D.Double(0, 0, this.getWidth(), this.getHeight(), 30, 30);
         this.setShape(roundedShape);
-        this.setBackground(new Color(0,0,0,0));
     }
 
     public void makeVisible(){
@@ -47,27 +53,22 @@ public class LoadingFrame extends JWindow{
         this.setVisible(false);
     }
 
-    public void customizeMainMessage(){
+    public void customizeMainMessage() throws FontFormatException, IOException{
         mainMessage = new JLabel("<html><div style='text-align: center;'>Datos Estadounidenses de<br> Vehículos Eléctricos</div><html>", SwingConstants.CENTER);
-        try {
-            mainMessage.setFont(Font.createFont(Font.TRUETYPE_FONT, new File(ps.getKeyValue("MainFont"))).deriveFont(47));
-        } catch (FontFormatException | IOException e) {
-            e.printStackTrace();
-        }
+        Font mainFont = Font.createFont(Font.TRUETYPE_FONT, new File(p.getKeyValue(("MainFont")))).deriveFont(47f);
+        mainMessage.setFont(mainFont);
         mainMessage.setForeground(GlobalView.MAIN_TEXT_COLOR);
         mainMessage.setBounds(61, 177, 677, 142);
         panel.add(mainMessage);
     }
-
-    public void customizeLoadingMessage(){
-        loadingMessage = new JLabel("Cargando Información...", SwingConstants.CENTER);
-        try {
-            loadingMessage.setFont(Font.createFont(Font.TRUETYPE_FONT, new File(ps.getKeyValue("MainFont"))));
-        } catch (FontFormatException | IOException e) {
-            e.printStackTrace();
-        }
+    
+    public void customizeLoadingMessage() throws FontFormatException, IOException{
+        loadingMessage = new JLabel("Cargando Información...", SwingConstants.LEFT);
+        Font mainFont = Font.createFont(Font.TRUETYPE_FONT, new File(p.getKeyValue(("MainFont")))).deriveFont(47f);
+        loadingMessage.setFont(mainFont);
         loadingMessage.setForeground(GlobalView.SECONDARY_TEXT_COLOR);
         loadingMessage.setBounds(158, 345, 484, 60);
+        loadingMessage.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         panel.add(loadingMessage);
     }
 }

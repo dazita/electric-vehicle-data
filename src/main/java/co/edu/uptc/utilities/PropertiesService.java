@@ -7,9 +7,9 @@ import java.util.Properties;
 public class PropertiesService {
 
     private String filePath = "src/main/java/co/edu/uptc/resources/app.properties";
+    Properties properties = new Properties();
 
     public String getKeyValue(String Key) {
-        Properties properties = new Properties();
         String value = "";
         try (FileInputStream fileInputStream = new FileInputStream(filePath)) {
             properties.load(fileInputStream);
