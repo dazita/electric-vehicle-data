@@ -1,5 +1,7 @@
 package co.edu.uptc.views.MainFrame;
 
+import java.awt.CardLayout;
+
 import javax.swing.*;
 import co.edu.uptc.views.GlobalView;
 
@@ -7,6 +9,7 @@ public class MainFrame extends JFrame{
     
     private Aside aside;
     private Body body;
+    private CardLayout bodyCardLayout;
 
     public MainFrame(){
         customizeFrame();
@@ -34,7 +37,8 @@ public class MainFrame extends JFrame{
     }
 
     public void customizeBody(){
-        body = new Body();
+        bodyCardLayout = new CardLayout();
+        body = new Body(bodyCardLayout);
         this.add(body);
     }
 }
