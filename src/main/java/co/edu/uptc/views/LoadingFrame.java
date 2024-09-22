@@ -1,7 +1,6 @@
 package co.edu.uptc.views;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 
 import co.edu.uptc.utilities.PropertiesService;
 

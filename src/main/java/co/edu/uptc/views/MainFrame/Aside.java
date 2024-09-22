@@ -2,6 +2,8 @@ package co.edu.uptc.views.MainFrame;
 
 import java.awt.Font;
 import java.awt.FontFormatException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
@@ -9,15 +11,18 @@ import javax.swing.*;
 
 import co.edu.uptc.utilities.PropertiesService;
 import co.edu.uptc.views.GlobalView;
+import co.edu.uptc.views.VehicleManagerView;
 
 public class Aside extends JPanel{
+    private VehicleManagerView vehicleManagerView;
     private JLabel asideTitle;
     private JButton geoAnalisis;
     private JButton carAnalisis;
 
     PropertiesService ps = new PropertiesService();
     
-    public Aside(){
+    public Aside(VehicleManagerView vehicleManagerView){
+        this.vehicleManagerView = vehicleManagerView;
         customizeAside();
         try {
             customizeAsideTitle();
@@ -49,6 +54,11 @@ public class Aside extends JPanel{
         geoAnalisis.setForeground(GlobalView.MAIN_TEXT_COLOR);
         geoAnalisis.setFont(Font.createFont(Font.TRUETYPE_FONT, new File(ps.getKeyValue("SecondaryFont"))).deriveFont(13f));
         geoAnalisis.setFocusable(false);
+        geoAnalisis.addActionListener(new ActionListener() {
+             @Override
+            public void actionPerformed(ActionEvent e) {
+                vehicleManagerView.showGeoAnalisis();
+            }});
         this.add(geoAnalisis);
     }
 
@@ -59,6 +69,11 @@ public class Aside extends JPanel{
         carAnalisis.setForeground(GlobalView.MAIN_TEXT_COLOR);
         carAnalisis.setFont(Font.createFont(Font.TRUETYPE_FONT, new File(ps.getKeyValue("SecondaryFont"))).deriveFont(13f));
         carAnalisis.setFocusable(false);
+        carAnalisis.addActionListener(new ActionListener() {
+            @Override
+           public void actionPerformed(ActionEvent e) {
+               vehicleManagerView.showCarAnalisis();
+           }});
         this.add(carAnalisis);
     }
 }

@@ -11,9 +11,17 @@ public class VehicleManagerView implements iEVDContract.View{
 
     public VehicleManagerView(){
         loadingFrame = new LoadingFrame();
-        mainFrame = new MainFrame();
+        mainFrame = new MainFrame(this);
     }
 
+    public void showGeoAnalisis(){
+        mainFrame.showGeoAnalisis();
+    }
+
+
+    public void showCarAnalisis() {
+        mainFrame.showCarAnalisis();
+    }
 
     @Override
     public void setPresenter(Presenter presenter) {

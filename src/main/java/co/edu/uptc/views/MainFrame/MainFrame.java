@@ -4,14 +4,17 @@ import java.awt.CardLayout;
 
 import javax.swing.*;
 import co.edu.uptc.views.GlobalView;
+import co.edu.uptc.views.VehicleManagerView;
 
 public class MainFrame extends JFrame{
     
+    private VehicleManagerView vehicleManagerView;
     private Aside aside;
     private Body body;
     private CardLayout bodyCardLayout;
 
-    public MainFrame(){
+    public MainFrame(VehicleManagerView vehicleManagerView){
+        this.vehicleManagerView = vehicleManagerView;
         customizeFrame();
         customizeAside();
         customizeBody();
@@ -32,7 +35,7 @@ public class MainFrame extends JFrame{
     }
 
     public void customizeAside(){
-        aside = new Aside();
+        aside = new Aside(vehicleManagerView);
         this.add(aside);
     }
 
@@ -40,5 +43,13 @@ public class MainFrame extends JFrame{
         bodyCardLayout = new CardLayout();
         body = new Body(bodyCardLayout);
         this.add(body);
+    }
+
+    public void showGeoAnalisis(){
+        bodyCardLayout.show(body, "GeoAnalisis");
+    }
+
+    public void showCarAnalisis(){
+        bodyCardLayout.show(body, "CarAnalisis");
     }
 }
