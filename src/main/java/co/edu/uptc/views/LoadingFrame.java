@@ -63,11 +63,10 @@ public class LoadingFrame extends JWindow{
     
     public void customizeLoadingMessage() throws FontFormatException, IOException{
         loadingMessage = new JLabel("Cargando Información...", SwingConstants.LEFT);
-        Font mainFont = Font.createFont(Font.TRUETYPE_FONT, new File(p.getKeyValue(("MainFont")))).deriveFont(47f);
+        Font mainFont = Font.createFont(Font.TRUETYPE_FONT, new File(p.getKeyValue(("MainFont")))).deriveFont(40f);
         loadingMessage.setFont(mainFont);
         loadingMessage.setForeground(GlobalView.SECONDARY_TEXT_COLOR);
         loadingMessage.setBounds(158, 345, 484, 60);
-        loadingMessage.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         panel.add(loadingMessage);
     }
 }

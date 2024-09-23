@@ -1,6 +1,6 @@
 package co.edu.uptc.utilities;
 
-import org.json.JSONObject;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -9,11 +9,14 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Scanner;
 
-public class ApiConsumer  {
+import org.json.JSONObject;
 
-    private PropertiesService propertiesService = new PropertiesService();
-    public void consumeApi() throws URISyntaxException{
-    String apiUrl = propertiesService.getKeyValue("ApiPath");
+public class ApiConsumer {
+
+    private PropertiesService ps = new PropertiesService();
+
+    public void consumeApi(){
+        String apiUrl = ps.getKeyValue("ApiPath");
         try {
             URI uri = new URI(apiUrl);
             URL url = uri.toURL();
@@ -27,14 +30,14 @@ public class ApiConsumer  {
             }
             scanner.close();
             JSONObject jsonResponse = new JSONObject(response.toString());
-   
-            try (FileWriter file = new FileWriter(propertiesService.getKeyValue("DataPath"))) {
+
+            try (FileWriter file = new FileWriter(ps.getKeyValue("DataPath"))) {
                 file.write(jsonResponse.toString(4)); 
             } catch (IOException e) {
                 System.out.println("Error saving the data: " + e.getMessage());
             }
-            
-        } catch (IOException e) {
+
+        } catch (IOException|URISyntaxException e) {
             System.out.println("Error saving the data: " + e.getMessage());
         }
     }

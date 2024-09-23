@@ -7,9 +7,9 @@ import co.edu.uptc.views.VehicleManagerView;
 
 public class Main {
     public static void main(String[] args) {
-        iEVDContract.Model model = new VehicleManagerModel();
-        iEVDContract.View view = new VehicleManagerView();
         iEVDContract.Presenter presenter = new Presenter();
+        iEVDContract.View view = new VehicleManagerView();
+        iEVDContract.Model model = new VehicleManagerModel();
         model.setPresenter(presenter);
         view.setPresenter(presenter);
         presenter.setModel(model);

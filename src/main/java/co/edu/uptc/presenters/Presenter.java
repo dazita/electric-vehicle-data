@@ -20,4 +20,9 @@ public class Presenter implements iEVDContract.Presenter{
     public void setModel(Model model) {
         this.model = model;
     }
+
+    @Override
+    public void loadData() {
+        model.loadData();
+    }
 }

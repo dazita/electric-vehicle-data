@@ -30,7 +30,14 @@ public class VehicleManagerView implements iEVDContract.View{
 
     @Override
     public void begin() {
-       mainFrame.makeVisible();
+        loadingFrame.makeVisible();
+        presenter.loadData();
+        showMainFrame();
+    }
+
+    public void showMainFrame(){
+        loadingFrame.makeInvisible();
+        mainFrame.makeVisible();
     }
     
 }
