@@ -1,12 +1,11 @@
 package co.edu.uptc.pojos;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.*;
 
 @Data
 @AllArgsConstructor
-public class County {
-    private String state;
+public class City {
+    
     private String name;
     private int numberOfVehicles;
 }

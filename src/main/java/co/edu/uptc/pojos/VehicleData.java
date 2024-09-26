@@ -3,14 +3,6 @@ import lombok.Data;
 
 @Data
 public class VehicleData{
-    private String identifierSID;
-    private String identifierID;
-    private Integer position;
-    private Long createdAtEpoch;
-    private String createdMeta;
-    private Long updatedAtEpoch;
-    private String updatedMeta;
-    private String meta;
     private String vinNumber;
     private String county;
     private String city;
@@ -27,8 +19,4 @@ public class VehicleData{
     private String dolVehicleId;
     private String geocodedLocation;
     private String electricUtility;
-    private String census2020Tract;
-    private Integer regionsCounted;
-    private Integer congressionalDistrict;
-    private Integer legislativeDistrictBoundaryGIS;
 }

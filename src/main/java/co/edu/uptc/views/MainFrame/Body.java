@@ -10,11 +10,13 @@ import javax.swing.JPanel;
 
 import co.edu.uptc.utilities.PropertiesService;
 import co.edu.uptc.views.GlobalView;
+import co.edu.uptc.views.VehicleManagerView;
 import co.edu.uptc.views.MainFrame.InfoPanels.CarAnalisis;
 import co.edu.uptc.views.MainFrame.InfoPanels.GeoAnalisis;
 
 public class Body extends JPanel{
 
+    private VehicleManagerView view;
     private JPanel carImagePanel;
     private JPanel carAnalisis;
     private JPanel geoAnalisis;
@@ -33,14 +35,14 @@ public class Body extends JPanel{
     }
 
     public void customizeCarAnalisis(){
-        carAnalisis = new CarAnalisis();
+        carAnalisis = new CarAnalisis(this.view);
         carAnalisis.setLayout(null);
         carAnalisis.setBackground(GlobalView.INFO_BACKGROUND);
         this.add(carAnalisis, "CarAnalisis");
     }
 
     public void customizeGeoAnalisis(){
-        geoAnalisis = new GeoAnalisis();
+        geoAnalisis = new GeoAnalisis(this.view);
         geoAnalisis.setLayout(null);
         geoAnalisis.setBackground(GlobalView.INFO_BACKGROUND);
         this.add(geoAnalisis, "GeoAnalisis");

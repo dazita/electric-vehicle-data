@@ -1,27 +1,19 @@
 package co.edu.uptc.utilities;
 
-public class Node {
-    private Integer info;
-    private Node next;
-    private Node back;
+public class Node <T> {
+    private T info;
+    private Node<T> next;
     
-    public Integer getInfo() {
+    public T getInfo() {
         return info;
     }
-    public void setInfo(Integer info) {
+    public void setInfo(T info) {
         this.info = info;
     }
-    public Node getNext() {
+    public Node<T> getNext() {
         return next;
     }
-    public void setNext(Node next) {
+    public void setNext(Node<T> next) {
         this.next = next;
     }
-    public Node getBack() {
-        return back;
-    }
-    public void setBack(Node back) {
-        this.back = back;
-    }
 }
-

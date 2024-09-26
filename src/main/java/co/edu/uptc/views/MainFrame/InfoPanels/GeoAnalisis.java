@@ -1,7 +1,6 @@
 package co.edu.uptc.views.MainFrame.InfoPanels;
 
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.event.ActionEvent;
@@ -10,8 +9,11 @@ import java.io.File;
 import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+
+import co.edu.uptc.utilities.ListToObjectParser;
 import co.edu.uptc.utilities.PropertiesService;
 import co.edu.uptc.views.GlobalView;
+import co.edu.uptc.views.VehicleManagerView;
 
 public class GeoAnalisis extends JPanel{
 
@@ -20,10 +22,12 @@ public class GeoAnalisis extends JPanel{
     private JButton button3;
     private JPanel infoPanel;
     private CardLayout infoCardLayout;
+    private VehicleManagerView view;
 
     PropertiesService ps = new PropertiesService();
 
-    public GeoAnalisis(){
+    public GeoAnalisis(VehicleManagerView view){
+        this.view = view;
         try {
             customizeInfoPanel();
             customizeButton1();
@@ -87,12 +91,9 @@ public class GeoAnalisis extends JPanel{
         infoPanel = new JPanel(infoCardLayout);
         infoPanel.setBounds (21, 100, 809, 650);
 
-        JPanel panel1 = new JPanel();
-        panel1.setBackground(Color.black);
-        JPanel panel2 = new JPanel();
-        panel2.setBackground(Color.green);
-        JPanel panel3 = new JPanel();
-        panel3.setBackground(Color.blue);
+        JPanel panel1 = new InfoTable(new String[]{"Estado", "Numero de registros"}, ListToObjectParser.parseState(view.askState()));
+        JPanel panel2 = new InfoTable(new String[]{"Estado", "Condado", "Numero de registros"}, ListToObjectParser.parseCounty(view.askCounty()));
+        JPanel panel3 = new InfoTable(new String[]{"Ciudad", "Numero de registros"}, ListToObjectParser.parseCity(view.askCity()));
 
         infoPanel.add(panel1, "Panel1");
         infoPanel.add(panel2, "Panel2");

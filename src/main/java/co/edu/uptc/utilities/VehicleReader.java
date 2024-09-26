@@ -11,6 +11,7 @@ import co.edu.uptc.pojos.VehicleData;
 public class VehicleReader{
 
     SimpleList<VehicleData> dataList;
+    PropertiesService ps = new PropertiesService();
 
     public SimpleList<VehicleData> readData(){
         ObjectMapper objectMapper = new ObjectMapper();
